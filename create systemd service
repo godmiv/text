@@ -1,0 +1,57 @@
+systemctl для python
+
+- Путь к папке где лежит проект, где лежит main.py
+  /home/tgbot/app
+
+- Узнаем путь к python
+  which python
+  /home/tgbot/app/.venv/bin/python
+
+- Создаем файл
+  sudo vim /etc/systemd/system/tgbot.service
+- Содержимое файла:
+---start file---
+[Unit]
+Description=Telegram bot
+After=network.target
+
+[Service]
+User=tgbot
+Group=tgbot
+WorkingDirectory=/home/tgbot/app
+ExecStart=/home/tgbot/app/.venv/bin/python /home/tgbot/app/main.py
+Restart=alway
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+# Environment="VAR_NAME=value
+
+[Install]
+WantedBy=multi-user.target
+---end file---
+
+- После сохранения файла необходимо перезапустить службу systemd:
+  sudo systemctl daemon-reload
+
+- Добавляем нашу службу в автозапуск:
+  sudo systemctl enable tgbot.service
+
+- Запускаем службу:
+  sudo systemctl start tgbot.service
+
+- Проверяем статус:
+  sudo systemctl status tgbot.service
+
+- Выведет примерно такое:
+  (.venv) root@s1258413:/home/tgbot/app# sudo systemctl status tgbot.service
+● tgbot.service - Telegram bot
+     Loaded: loaded (/etc/systemd/system/tgbot.service; enabled; preset: enabled)
+     Active: active (running) since Wed 2025-06-18 21:20:37 MSK; 2s ago
+   Main PID: 7700 (python)
+      Tasks: 1 (limit: 2266)
+     Memory: 57.8M (peak: 57.8M)
+        CPU: 2.068s
+     CGroup: /system.slice/tgbot.service
+             └─7700 /home/tgbot/app/.venv/bin/python /home/tgbot/app/main.py
+
+Jun 18 21:20:37 s1258413.smartape-vps.com systemd[1]: Started tgbot.service - Telegram bot.
+(.venv) root@s1258413:/home/tgbot/app#
