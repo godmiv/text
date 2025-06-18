@@ -1,4 +1,4 @@
-systemctl для python
+# Systemctl для python
 
 - Путь к папке где лежит проект, где лежит main.py
   /home/tgbot/app
