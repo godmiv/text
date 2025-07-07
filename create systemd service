@@ -112,4 +112,4 @@ Jun 18 21:20:37 s1258413.smartape-vps.com systemd[1]: Started tgbot.service - Te
 (.venv) root@s1258413:/home/tgbot/app#
 
 Просмотр логов онлайн
-sudo jourtanalctl -u smenabot.service -f -n 50
+sudo journalctl -u smenabot.service -f -n 50
