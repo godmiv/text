@@ -43,8 +43,6 @@ smenabot@rus-invs:~$ pyenv virtualenv 3.13.5 smenabot
 smenabot@rus-invs:~$ pyenv local smenabot
 (smenabot) smenabot@rus-invs:~$
 
-
-
 - Путь к папке где лежит проект, где лежит main.py
   /home/tgbot/app
 
@@ -112,3 +110,6 @@ WantedBy=multi-user.target
 
 Jun 18 21:20:37 s1258413.smartape-vps.com systemd[1]: Started tgbot.service - Telegram bot.
 (.venv) root@s1258413:/home/tgbot/app#
+
+Просмотр логов онлайн
+sudo jourtanalctl -u smenabot.service -f -n 50
