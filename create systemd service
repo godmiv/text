@@ -75,7 +75,7 @@ User=tgbot
 Group=tgbot
 WorkingDirectory=/home/tgbot/app
 ExecStart=/home/tgbot/app/.venv/bin/python /home/tgbot/app/main.py
-Restart=alway
+Restart=always
 RestartSec=5
 Environment=PYTHONUNBUFFERED=1
 # Environment="VAR_NAME=value
