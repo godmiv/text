@@ -1,11 +1,68 @@
 Systemctl для python
 
+Установка pyenv :
+curl https://pyenv.run | bash
+
+Появится сообщение:
+---Start---
+# Load pyenv automatically by appending
+# the following to
+# ~/.bash_profile if it exists, otherwise ~/.profile (for login shells)
+# and ~/.bashrc (for interactive shells) :
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
+
+# Restart your shell for the changes to take effect.
+
+# Load pyenv-virtualenv automatically by adding
+# the following to ~/.bashrc:
+
+eval "$(pyenv virtualenv-init -)"
+---end---
+
+Это сообщение нужно встваить в vim ~/.bashrc в конец файла
+Потом выполнить:
+exec $SHELL
+После чего можно установить любую версию:
+pyenv install 3.13
+--------
+Вывод будет примерно таким:
+smenabot@rus-invs:~$ pyenv install 3.13
+Downloading Python-3.13.5.tar.xz...
+-> https://www.python.org/ftp/python/3.13.5/Python-3.13.5.tar.xz
+Installing Python-3.13.5...
+
+Installed Python-3.13.5 to /home/smenabot/.pyenv/versions/3.13.5
+-------
+
+Создаем vevnv с помощью pyenv
+smenabot@rus-invs:~$ pyenv virtualenv 3.13.5 smenabot
+Автоматическое включение venv при входе в папку
+smenabot@rus-invs:~$ pyenv local smenabot
+(smenabot) smenabot@rus-invs:~$
+
+
+
 - Путь к папке где лежит проект, где лежит main.py
   /home/tgbot/app
 
 - Узнаем путь к python
   which python
   /home/tgbot/app/.venv/bin/python
+
+Если pyenv то:
+(smenabot) root@rus-invs:/home/smenabot# cd ~/.pyenv/versions/smenabot/bin/
+root@rus-invs:~/.pyenv/versions/smenabot/bin# file python
+python: symbolic link to /root/.pyenv/versions/3.13.3/bin/python
+root@rus-invs:~/.pyenv/versions/smenabot/bin# pwd
+/root/.pyenv/versions/smenabot/bin    <----- это искомый путь, нужно только дописать python
+root@rus-invs:~/.pyenv/versions/smenabot/bin#
+
+Вот полный путь:
+/root/.pyenv/versions/smenabot/bin/python
+
 
 - Создаем файл
   sudo vim /etc/systemd/system/tgbot.service
